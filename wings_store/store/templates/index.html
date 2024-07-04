@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %} Wins store | Home{% endblock title%}
+{% block css %}
+<style>
+.products{
+    width: 200px;
+    height: 335px;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+}
+.products-img img{
+    width: 100%;
+    height: 180px;
+    border-radius: 10px 10px 0 0;
+}
+.carousel-item:hover{
+    z-index: 999;
+}
+.category{
+  background-color: rgba(240, 236, 236, 0.726);
+  border-radius: 4px;
+  padding: 5px;
+}
+.product-container{
+  display: grid;
+  grid-template-areas:
+  'product product product product' ;
+}
+.product{
+  grid-area: product;
+}
+</style>
+{% endblock css %}
+
+{% block body %}
+    
+<main>
+  <div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+        <i class="fa-solid fa-store mx-1"><title>Wings Store</title></i>
+        <span class="fs-4">Wings Store</span>
+      </a>
+    </header>
+
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3 d-flex">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Wings Store</h1>
+        <p class="col-md-8 fs-4">Welcome to Wings Store, your go-to destination for the latest in fashion and lifestyle. Discover top-quality apparel, accessories, and beauty essentials from leading brands and emerging designers. Enjoy a seamless shopping experience with exceptional customer service and fast delivery. Fly high with Wings Store and let your style take flight!</p>
+        <button class="btn btn-primary btn-lg" type="button">Explore Wings</button>
+      </div>
+      <div class="img mx-5">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9zznxEE4UpypXD7-Sq0iNiZmm9AafYO_o6Q&s" height="360px" width="300px" alt="">
+      </div>
+    </div>
+  </div>
+</main>
+<div class="container my-5 product-container">
+  {% for product in products %}
+  <div class="d-flex justify-content-around">
+    <div class="products mx-4 my-4 position-relative">
+    <span class="position-absolute my-1 mx-3 category">{{product.category}}</span>
+      <div class="products-img">
+          <img src="/media/{{product.products_image}}" alt="">
+      </div>
+      <div class="products-details p-3">
+          <h3>{{product.products_name}}</h3>
+          <p>{{product.products_desc|truncatechars:45}}</p>
+          <a href="/buying/{{product.id}}/"><span class="btn btn-success">Rs. {{product.price}}</span></a>
+          <a href="/buying/{{product.id}}/"><button class="btn btn-primary">Buy</button></a>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+
+
+<div class="d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if products.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{products.previous_page_number}}">Previous</a></li>
+      {% endif %}
+      <li class="page-item">
+        <span class="page-link">
+            {{products.number}} of {{products.paginator.num_pages}}
+        </span>
+      </li>
+      {% if products.has_next %}
+      <li class="page-item">
+        <a href="?page={{products.next_page_number}}" class="page-link">Next</a>
+        {% comment %} <a class="page-link" href="?page={{products.paginator.num_pages}}"> Next &raquo;</a> {% endcomment %}
+    </li>
+    {% endif %}
+    </ul>
+  </nav>
+</div>
+
+
+{% endblock body %}
+
+{% block js %}
+<script>
+
+</script>
+{% endblock js %}

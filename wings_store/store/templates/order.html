@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %} Wins store | Order{% endblock title%}
+{% block css %}
+<style>
+.container form{
+    width: 400px;
+}
+.product_image img{
+    width: 300px;
+    border-radius: 10px;
+}
+</style>
+{% endblock css %}
+
+{% block body %}
+<div class="container d-flex justify-content-center my-5 p-3">
+    
+    <div class="product_details mx-5">
+        <div class="product_image d-flex justify-content-center my-3">
+            <a href="/media/{{products.products_image}}"><img src="/media/{{products.products_image}}" alt=""></a>
+         </div>
+        
+         <div class="product_name my-2">
+             <h3>{{products.products_name}}</h3>
+         </div>
+         <div class="product_name ">
+            <h4>Rs .{{products.price}}</h4>
+        </div>
+    </div>
+<form method="post" enctype="multipart/form-data" class="mx-5">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="fullname" class="form-label">Full name</label>
+        <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Enter your fullname..." required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter your Email..." required>
+    </div>
+    <div class="mb-3">
+        <label for="phone_number" class="form-label">Mobile number</label>
+        <input type="tel" name="phone_number" class="form-control" id="phone_number" placeholder="Enter your Mobile number" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone_number" class="form-label">Add Quntaty</label>
+    <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="selecter" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">7</option>
+        <option value="9">9</option>
+      </select>
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" rows="3" placeholder="Enter you address" name="address" required></textarea>
+      </div>
+    <div class="mb-3">
+        <button class="btn btn-primary">Submit</button>
+    </div>
+</form>
+</div>
+
+
+{% endblock body %}
+
+{% block js %}
+<script>
+
+</script>
+{% endblock js %}

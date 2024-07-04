@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Wins store | Products{% endblock title%}
+{% block css %}
+<style>
+
+</style>
+{% endblock css %}
+
+{% block body %}
+<div class="container d-flex justify-content-center my-5 p-3">
+    {% for product in products %}
+
+    <div class="d-flex justify-content-around">
+      <div class="products mx-4 my-4 position-relative">
+      <span class="position-absolute my-1 mx-3 category">{{product.category}}</span>
+        <div class="products-img">
+            <img src="" alt="">
+        </div>
+        <div class="products-details p-3">
+            <h3></h3>
+            <p></p>
+            <a href=""><span class="btn btn-success">Rs. </span></a>
+            <a href=""><button class="btn btn-primary">Buy</button></a>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    
+</div>
+
+
+{% endblock body %}
+
+{% block js %}
+<script>
+
+</script>
+{% endblock js %}
